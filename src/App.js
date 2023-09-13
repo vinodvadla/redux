@@ -1,25 +1,26 @@
 import logo from './logo.svg';
 import './App.css';
+import { connect } from 'react-redux'
+import { incrementone, decrementone, incrementTwo, DecrementTwo } from './Reducers/Actions';
 
-function App() {
+function App({ playertwo, playerone, incrementone, decrementone,incrementTwo,DecrementTwo }) {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>plyerone Score</h1>
+      <h1>{playerone.name}</h1>{" "}<h1>{playerone.score}</h1>
+      <button onClick={incrementone}>Increment</button>
+      <button onClick={decrementone}>Decrement</button>
+      <hr />
+      <h1>playertwo score</h1>
+      <h1>{playertwo.name}</h1>{""}<h1>{playertwo.score}</h1>
+      <button onClick={incrementTwo}>Increment</button>
+      <button onClick={DecrementTwo}>Decrement</button>
     </div>
   );
 }
+const mapStateToProps = (state) => ({
+  playerone: state.first,
+  playertwo: state.second
+})
 
-export default App;
+export default connect(mapStateToProps, { incrementone, decrementone, incrementTwo, DecrementTwo })(App);
